@@ -1,8 +1,6 @@
 import { assertThat } from '../../j4b1-assert.js'
-import { addNumbers, averageFrom } from './a20-challenge-project/main/helpers/my-things.js';
-import { firstLetterToUpper } from './a20-challenge-project/main/tools/tool-1.js';
-import { countWords } from './a20-challenge-project/main/tools/tool-2.js';
-import wordHelper, { toSecondPower } from './a20-challenge-project/main/utils/some-util.js';
+import { numberHelper, stringHelper } from './a20-challenge-project/czesuaf-util.js';
+
 /**
  * a20-import-export-variants
  * Challenge
@@ -27,19 +25,6 @@ import wordHelper, { toSecondPower } from './a20-challenge-project/main/utils/so
  * - W innych plikach projektowych używasz głównie słów kluczowych: import / export
  * - W tym pliku (challenge) możesz tylko używać składni z import !
  */
-
-const stringHelper = {
-	lastLetter: wordHelper.lastLetter,
-	numberOfChars: wordHelper.numberOfChars,
-	countWords: countWords,
-	capitalize: firstLetterToUpper
-}
-
-const numberHelper = {
-	addNumbers: addNumbers,
-	averageFrom: averageFrom,
-	toSecondPower: toSecondPower,
-}
 
 // #Reguła:
 // Nie możesz zmieniać kodu poniżej:
