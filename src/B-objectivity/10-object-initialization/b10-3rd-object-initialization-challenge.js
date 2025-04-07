@@ -11,23 +11,31 @@ import { assertThat } from '../../j4b1-assert.js'
  * - Kod możesz pisać tylko w wyznaczonym do tego miejscu
  */
 
-function dressUpAccordingToWeather(weatherProvider, props) {
+function dressUpAccordingToWeather(weatherProvider, { name, lastName, has } = {}) {
 	// #Reguła:
 	// Możesz pisać tylko tutaj
-	const user = {
-		name: props.name,
-		lastName: props.lastName
-	}
+	// const {name, lastName, has} = props; // destructuring
+	// const user = {
+	// 	name,
+	// 	lastName,
+	// 	[has]: true,
+	// 	wearing: weatherProvider === 'sunny' ? 't-shirt' : 'coat'
+	// }
 
-	if (weatherProvider === 'sunny') {
-		user.wearing = 't-shirt'
-	} else {
-		user.wearing = 'coat'
-	}
+	// if (weatherProvider === 'sunny') {
+	// 	user.wearing = 't-shirt'
+	// } else {
+	// 	user.wearing = 'coat'
+	// }
 
-	user[props.has] = true;
+	// user[has] = true;
 
-	return user;
+	return {
+		name,
+		lastName,
+		[has]: true,
+		wearing: weatherProvider === 'sunny' ? 't-shirt' : 'coat'
+	};
 }
 
 
