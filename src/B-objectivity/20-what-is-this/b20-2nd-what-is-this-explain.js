@@ -42,6 +42,8 @@ personRoy.sayYourName(); //=
 
 // Podobnie będzie się działo jeśli pożyczymy metodę od obiektu:
 
+globalThis.name = 'nodejs'
+
 const personMaurice = {
 	name: 'Maurice',
 	getName() {
@@ -50,6 +52,7 @@ const personMaurice = {
 }
 
 personMaurice.getName(); //=
+
 
 const borrowName = personMaurice.getName;
 
@@ -66,7 +69,7 @@ console.log(global.name);
 // Może również dostać kontekst innego obiektu - jeśli to na nim zostanie wywołana, przykład:
 
 const myCar = {
-	name: 'Audi',
+	name: 'Mazda',
 	whatIsYourName: borrowName
 }
 
