@@ -10,14 +10,34 @@ import { assertThat } from '../../j4b1-assert.js'
  * - Postaraj się zastosować zasadę "DRY" - Don't Repeat Yourself
  */
 
+// function declaration 
+function sayYourName() {
+	// console.log(this);
+	return this.fullName
+}
+
+// arrow function expression
+// const sayYourName = () => {
+// 	return this.fullName
+// }
+
+// function expression:
+// const sayYourName = function () {
+// 	return this.fullName
+// }
+
+// sayYourName();
+
 const personJen = {
 	fullName: 'Jen Barber',
-	profession: 'IT Manager'
+	profession: 'IT Manager',
+	sayYourName
 }
 
 const personRoy = {
 	fullName: 'Roy Trenneman',
-	profession: 'The IT Guy'
+	profession: 'The IT Guy',
+	sayYourName
 }
 
 // #Reguła:
