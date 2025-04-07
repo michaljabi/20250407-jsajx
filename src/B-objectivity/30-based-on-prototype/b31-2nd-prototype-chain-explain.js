@@ -20,6 +20,9 @@ class Vehicle {
 	// }
 }
 
+// console.log(Vehicle)
+// console.log(String)
+
 // Klasa która dziedziczy po klasie bazowej
 class Car extends Vehicle {
 

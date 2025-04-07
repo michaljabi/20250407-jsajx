@@ -25,26 +25,51 @@ function makePersonWith(name, lastName = 'Doe') {
 	}
 }
 
+console.log(makePersonWith('Michał'))
+console.log(makePersonWith('Michał'))
+console.log(makePersonWith('Michał'))
+console.log(makePersonWith('Michał'))
+
 // 2) Sposób kolejny to wykorzystanie słowa kluczowego `this` podczas DEKLARACJI funkcji
 // Musimy wtedy funkcję wywołać ze słowem kluczowym `new` - inaczej złe rzeczy zadzieją się w naszej aplikacji
 // Tutaj dostajemy faktyczny konstruktor - również możemy przekazywać parametry i dopisywać je do instancji
 // `this` będzie tutaj reprezentowało instancję naszego nowo tworzonego obiektu.
 function Person() {
-	 this.name = 'Michał';
-	 this.lastName = 'Kowalsky';
+	this.name = 'Michał';
+	this.lastName = 'Kowalsky';
 }
-
+console.log(Person);
+console.log(Person()); // niestety tak też działa - a nie zwraca błędu
+console.log(new Person());
+console.log(new Person());
+console.log(new Person());
+console.log(new Person());
 
 // 3) Kolejny sposób to wykorzystanie lukru składniowego ze słowem kluczowym `class` - jest to najprzyjemniejsza opcja
 // Jeśli tylko możemy skorzystać z syntaksu ES6 (lub możemy transpilować kod).
 // Tutaj jeśli zapomnimy słowa kluczowego `new` przy tworzeniu instancji obiektów - zostaniemy o tym poinformowani.
 // Dodatkowo - widzimy dokładnie gdzie jest konstruktor, i w prosty sposób możemy dopisywać metody
 class MyPerson {
-	 constructor () {
-		 this.name = 'Michał';
-		 this.lastName = 'Kowalsky';
-	 }
+	constructor() {
+		this.name = 'Michał';
+		this.lastName = 'Kowalsky';
+	}
+
+	static saySomething() {
+		return 'hello'
+	}
 }
+
+console.log(MyPerson);
+// console.log(MyPerson()); // to dobrze że tutaj mamy błąd
+console.log(new MyPerson());
+console.log(new MyPerson());
+console.log(new MyPerson());
+
+console.log(MyPerson);
+
+// metoda statyczna na konstruktorze
+console.log(MyPerson.saySomething())
 
 // Nie jest konieczne używanie konstruktora, od jednej z wersji po ES6 deklaracja pól, może odbywać się poza konstruktorem
 class MyOtherPerson {
@@ -78,6 +103,7 @@ console.log(person4.constructor.name);
 
 // Na tym etapie możemy podejrzeć łańcuch dziedziczenia:
 console.log(person1 instanceof Object)
+console.log(person1 instanceof MyOtherPerson)
 console.log(person4 instanceof Object, person4 instanceof MyOtherPerson)
 
 // Ponieważ funkcja "dziedziczy" swój prototyp po - Object.
@@ -118,13 +144,13 @@ MyStaticClass.showGreetings()
 // Zapisy są podobne jak w innych językach OOP
 // Jeśli chcemy wykorzystać konstruktor klasy pochodnej musimy odwołać się do klasy bazowej jako super();
 class BaseClass {
-	constructor (name) {
+	constructor(name) {
 		this.name = name;
 	}
 }
 
 class InheritedClass extends BaseClass {
-	constructor (name) {
+	constructor(name) {
 		super(name);
 	}
 }

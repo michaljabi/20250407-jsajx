@@ -9,8 +9,24 @@ import { assertThat } from '../../j4b1-assert.js'
  * * Reguły:
  * - musisz dopisać cały kod, potrzebny do poprawnego działania przypadków testowych
  */
+const myItCrowd = {
+	characters: {
+		list: ['Maurice', 'Jen', 'Roy']
+	},
+	office: {
+		answerPhone() {
+			return 'Have you tried to turn it off and on again?'
+		}
+	}
+}
 
 
+
+
+;['Maurice', 'Jen', 'Roy'].toString() //=
+
+console.log(['Maurice', 'Jen', 'Roy'].toString())
+console.log('Maurice,Jen,Roy'.toString())
 
 // #Reguła:
 // Nie możesz zmieniać kodu poniżej:
