@@ -1,4 +1,8 @@
 import { assertThat } from '../../j4b1-assert.js'
+import { addNumbers, averageFrom } from './a20-challenge-project/main/helpers/my-things.js';
+import { firstLetterToUpper } from './a20-challenge-project/main/tools/tool-1.js';
+import { countWords } from './a20-challenge-project/main/tools/tool-2.js';
+import wordHelper, { toSecondPower } from './a20-challenge-project/main/utils/some-util.js';
 /**
  * a20-import-export-variants
  * Challenge
@@ -24,6 +28,19 @@ import { assertThat } from '../../j4b1-assert.js'
  * - W tym pliku (challenge) możesz tylko używać składni z import !
  */
 
+const stringHelper = {
+	lastLetter: wordHelper.lastLetter,
+	numberOfChars: wordHelper.numberOfChars,
+	countWords: countWords,
+	capitalize: firstLetterToUpper
+}
+
+const numberHelper = {
+	addNumbers: addNumbers,
+	averageFrom: averageFrom,
+	toSecondPower: toSecondPower,
+}
+
 // #Reguła:
 // Nie możesz zmieniać kodu poniżej:
 const sampleString = 'Hello World';
@@ -48,12 +65,12 @@ assertThat(
 
 assertThat(
 	'addNumbers',
-	expect => expect(numberHelper.addNumbers(1000,210,20,0)).toBe(1230)
+	expect => expect(numberHelper.addNumbers(1000, 210, 20, 0)).toBe(1230)
 )  //=
 
 assertThat(
 	'averageFrom',
-	expect => expect(numberHelper.averageFrom(30,40,100,20)).toBe(47.5)
+	expect => expect(numberHelper.averageFrom(30, 40, 100, 20)).toBe(47.5)
 )  //=
 
 assertThat(
