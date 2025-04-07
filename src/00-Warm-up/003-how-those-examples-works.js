@@ -1,12 +1,12 @@
 import { assertThat } from "../j4b1-assert.js";
-
+helloWorld();
 const x = 10;
 
 // możesz wyświetlić wartość za pomocą: console.log
 console.log(x + 100);
 
 // Możesz również zrobić to w kodzie, za pomocą: //= (jeśli używasz JavaScript REPL)
-x + 200; //=
+x + 2002 + '!'; //=
 
 // Pod przykładem będą testy, które same z siebie sprawdzają poprawność:
 
@@ -22,6 +22,9 @@ assertThat("x + 300 should equal 310", (expect) => expect(x + 300).toBe(310)); /
 // Spróbuj naprawić poniższe 3 testy, żeby pokazywały "✅ PASS",
 // Jednak NIE MOŻESZ RUSZAĆ kodu samego testu. Nie wolno Ci go zmieniać:
 
+// uiwquiehwqiuehi
+let myValue = 680;
+
 // #Reguła:
 // Nie możesz zmieniać kodu poniżej:
 assertThat("myValue should equal 680",
@@ -36,8 +39,11 @@ assertThat("myValue + 20 should equal 700", (expect) =>
 // został wykonany: zielony
 // nie został wykonany: szary
 // generuje błąd: czerwony
+
+
 function helloWorld() {
   const iAmNotUsed = ":(";
+  console.log('!')
 }
 
 // ❌ FAIL 😭 - nie wyświetli po lewej stronie nic czerwonego,
@@ -45,3 +51,4 @@ function helloWorld() {
 // Zauważ, że to nam nie przeszkadza, ponieważ dokładnie widzimy, jaki jest błąd
 // np.: ❌ FAIL 😭 myValue is not defined
 // oznacza błąd interpretera: myValue is not defined
+
