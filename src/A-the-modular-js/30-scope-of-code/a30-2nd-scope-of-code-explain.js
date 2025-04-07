@@ -1,3 +1,5 @@
+// "use strict";
+
 /**
  * a30-scope-of-code
  * Explain
@@ -30,10 +32,11 @@
 // a) Module Global SCOPE
 const model = 'Q2'
 
-function mySuperCar () {
+function mySuperCar() {
 	// b) local SCOPE of (mySuperCar)
 
 	function getName() {
+		console.log(model);
 		return 'Audi'
 	}
 
@@ -54,18 +57,24 @@ mySuperCar();
 // tutaj jest to zrobione, aby łatwiej było określić, gdzie się znajdujemy.
 // W rzeczywistym kodzie raczej nie spotkamy takich konstrukcji (😅).
 // Służy ona wyłączenie sprawdzeniu, jak zachowuje się przeszukiwanie scope w JS.
-const myColor = 'red';
+// const myColor = 'red';
+
+let myColor = 'blue';
+
+// console.log(globalThis.myColor);
+
 (function inception() {
-	const myColor = 'cristal';
+	//const myColor = 'crstal';
 
 	(function secondDream() {
-		const myColor = 'sapphire';
+		//const myColor = 'sapphire';
+
 
 		(function thirdDream() {
-			const myColor = 'emerald';
+			//const myColor = 'emerald';
 
 			(function fourthDream() {
-				const myColor = 'diamond';
+				// const myColor = 'diamond';
 				// komentuj po kolei idąc z tego scope odwołanie do stałem myColor - aby zobaczyć jak będzie się zachowywać
 				console.log(myColor);
 			})()
