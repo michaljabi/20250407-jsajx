@@ -32,7 +32,7 @@ function cloner(objectToClone) {
 	const newObj = { ...objectToClone };
 	for (let key in newObj) {
 		if (newObj[key] !== null && typeof newObj[key] === 'object') {
-			newObj[key] = { ...newObj[key] }
+			newObj[key] = cloner(newObj[key])
 		}
 	}
 
