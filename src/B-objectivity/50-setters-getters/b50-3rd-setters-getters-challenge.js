@@ -17,9 +17,28 @@ import { assertThat } from '../../j4b1-assert.js'
  * - Możesz pisać kodzik tylko w instancji `vintageCuckooClock`
  */
 
+'9'.padStart(2, '0'); //=
+'19'.padStart(2, '0'); //=
+'21'.padStart(2, '0'); //=
+'1'.padStart(2, '0'); //=
+''.padStart(2, '0'); //=
+
 const vintageCuckooClock = {
 	// #Reguła:
 	// Kodzik można pisać tylko tutaj w środku.
+	hours: 20,
+	minutes: 11,
+	seconds: 44,
+	get lcdTime() {
+		const { hours, minutes, seconds } = this;
+		return [hours, minutes, seconds].join(':')
+	},
+	set lcdTime(strTime) {
+		const [hours, minutes, seconds] = strTime.split(':');
+		this.hours = Number(hours);
+		this.minutes = Number(minutes);
+		this.seconds = Number(seconds);
+	}
 }
 
 // #Reguła:
