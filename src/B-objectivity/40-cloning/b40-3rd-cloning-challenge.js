@@ -29,12 +29,13 @@ const initialTypeState = {
 
 // Funkcja obliczająca stan następny na podstawie stanu poprzedniego
 function calculateNewParagraphState(currentState = initialTypeState, paragraphText = '') {
-	  currentState.paragraphTextContent += paragraphText;
-	  return currentState;
+	const copy = { ...currentState }
+	copy.paragraphTextContent += paragraphText;
+	return copy;
 }
 
 // Nasza symulacja pisania czegoś przez usera:
-const changeDetectionModule = (function(){
+const changeDetectionModule = (function () {
 
 	// #Event1: [init program]
 	const state1 = calculateNewParagraphState();
