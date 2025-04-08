@@ -21,6 +21,9 @@ const myGreetingObject = {
 
 const welcomeRoy = myGreetingObject.welcome();
 
+// wariant hard:
+Object.defineProperty(myGreetingObject, '_welcomeMessage', { writable: false })
+
 myGreetingObject._welcomeMessage = 'Troll'
 
 myGreetingObject.name = 'Moss';
