@@ -17,6 +17,9 @@ import { assertThat } from '../../j4b1-assert.js'
  * - Możesz pisać kodzik tylko w instancji `vintageCuckooClock`
  */
 
+let x = 10;
+const y = 20;
+
 '9'.padStart(2, '0'); //=
 '19'.padStart(2, '0'); //=
 '21'.padStart(2, '0'); //=
@@ -34,10 +37,10 @@ const vintageCuckooClock = {
 		return [hours, minutes, seconds].join(':')
 	},
 	set lcdTime(strTime) {
-		const [hours, minutes, seconds] = strTime.split(':');
-		this.hours = Number(hours);
-		this.minutes = Number(minutes);
-		this.seconds = Number(seconds);
+		const [hours, minutes, seconds] = strTime.split(':').map(Number);
+		this.hours = hours;
+		this.minutes = minutes;
+		this.seconds = seconds;
 	}
 }
 
@@ -72,3 +75,6 @@ assertThat(
 	'Should work for settled time seconds',
 	expect => expect(vintageCuckooClock.seconds).toBe(59)
 )  //=
+
+
+// y + 10;
