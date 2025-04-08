@@ -10,6 +10,17 @@ import { assertThat } from '../../j4b1-assert.js'
  * - Transformując dane staraj się korzystać z programowania funkcyjnego (metody tablicowe)
  */
 
+const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+const kebabCaseToCamelCase = (sentence) => sentence.split('-').map((word, idx) => {
+	if (idx === 0) {
+		console.log(word);
+		return word.toLowerCase()
+	}
+	return capitalize(word)
+}).join('')
+
+const kebabCaseToPascalCase = (sentence) => sentence.split('-').map(capitalize).join('');
+const kebabCaseToSnakeCase = (sentence) => sentence.replaceAll('-', '_').toLowerCase();
 
 
 // #Reguła:
