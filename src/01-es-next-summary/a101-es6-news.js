@@ -25,7 +25,7 @@
 */
 
 // Sample #1 | Modułowość w JavaScript dawniej
-(function oldFashionModularity(){
+(function oldFashionModularity() {
   console.log('#1  ---- oldFashionModularity() :');
 
   var outerScope = 'Hello';
@@ -41,17 +41,17 @@
 
   // A znacie / pamiętacie jQuery?
   const fakeJQuery = { fn: {} };
-  (function ( $ ) {
+  (function ($) {
 
-    $.fn.whoIsYourCreator = function() {
-       const author = {
-         name: 'John Resig',
-         birth: 'May 8, 1984',
-         tweet: '@jeresig'
-       };
-       return author.name;
+    $.fn.whoIsYourCreator = function () {
+      const author = {
+        name: 'John Resig',
+        birth: 'May 8, 1984',
+        tweet: '@jeresig'
+      };
+      return author.name;
     };
-  }( fakeJQuery ));
+  }(fakeJQuery));
   console.log('my fake jQuery', fakeJQuery);
 
 
@@ -64,44 +64,44 @@
 }());
 
 // Sample #2 | Nowe sposoby deklarowania zmiennych: let, const
-(function lexicalLetAndConst(){
+(function lexicalLetAndConst() {
   console.log('#2 ---- lexicalLetAndConst() :');
-    // #! porównaj z przykładem: a1-samples/var-problem.standalone.js
+  // #! porównaj z przykładem: a1-samples/var-problem.standalone.js
 
-    let x = 1;
-    x++;
-    console.log('My ex is:', x);
+  let x = 1;
+  x++;
+  console.log('My ex is:', x);
 
-    const y = 100;
-    console.log('Hello I\'m', y, 'I cannot be reassigned');
+  const y = 100;
+  console.log('Hello I\'m', y, 'I cannot be reassigned');
 }());
 
 // Sample #3 | Funkcje Arrow
-(function arrowFunctions(){
+(function arrowFunctions() {
   console.log('#3 ---- arrowFunctions() :');
-    // Skrócony zapis:
-    const myFunc = (x) => {
-      console.log(x);
-    };
+  // Skrócony zapis:
+  const myFunc = (x) => {
+    console.log(x);
+  };
 
-    // Jeszcze bardziej skrócony zapis:
-    const myFunc2 = (x) => console.log(x);
+  // Jeszcze bardziej skrócony zapis:
+  const myFunc2 = (x) => console.log(x);
 
-    // Tak też zadziała dla jednego argumentu:
-    const oneArgFunc = name => `hello ${name}`;
-    console.log(oneArgFunc('Helena'));
+  // Tak też zadziała dla jednego argumentu:
+  const oneArgFunc = name => `hello ${name}`;
+  console.log(oneArgFunc('Helena'));
 
-    // Niezmienność kontekstu:
-    // #! porównaj z przykładem: a1-samples/context-problem.standalone.js
+  // Niezmienność kontekstu:
+  // #! porównaj z przykładem: a1-samples/context-problem.standalone.js
 
 }());
 
 // Sample #4 | Domyślne wartości dla argumentów funkcji
-(function defaultValues(){
+(function defaultValues() {
   console.log('#4 ---- defaultValues() :');
 
   function callMyGrandpa(name, phoneNo = '111-223-222', device = 'Motorola') {
-     console.log('Grab', device, 'dial', phoneNo, 'call', name)
+    console.log('Grab', device, 'dial', phoneNo, 'call', name)
   }
 
   callMyGrandpa('Józef');
@@ -113,28 +113,28 @@
 
 // Sample #5 | Skrócony zapis properties i methods w obiekcie
 (function objectPropertyShorthandAndMethodProperties() {
-    console.log('#5 ---- objectPropertyShorthandAndMethodProperties() :');
-    // Object Property Shorthand:
-    const name = 'John';
-    const user = {
-        name
+  console.log('#5 ---- objectPropertyShorthandAndMethodProperties() :');
+  // Object Property Shorthand:
+  const name = 'John';
+  const user = {
+    name
+  }
+  console.log(user);
+  // Method Properties:
+  const welcomer = {
+    greetings() {
+      console.log('Welcomer says: Hello !');
     }
-    console.log(user);
-    // Method Properties:
-    const welcomer = {
-        greetings() {
-            console.log('Welcomer says: Hello !');
-        }
-    }
-    welcomer.greetings()
+  }
+  welcomer.greetings()
 }());
 
 // Sample #6 | Składniowy lukier dla klas
-(function classes(){
+(function classes() {
   console.log('#6 ---- classes() :');
 
   class Grandma {
-    constructor ( name ) {
+    constructor(name) {
       this.name = name;
       this.type = 'Grandma';
     }
@@ -153,7 +153,7 @@
 }());
 
 // Sample #7 | Rozbrajanie obiektów i tablic
-(function destructuring(){
+(function destructuring() {
   console.log('#7 ---- destructuring() :');
 
   const inDoorAPI = {
@@ -177,12 +177,12 @@
   console.log('manufacturer:', manufacturer);
 
   // pokaż mi ilość drzwi w lodówce:
-  const { fridge: {doors} } = inDoorAPI;
-  console.log('doors:',doors);
+  const { fridge: { doors } } = inDoorAPI;
+  console.log('doors:', doors);
 
   // wyjmij ser z lodówki:
   const { content } = inDoorAPI.fridge;
-  const [,,yourCheese] = content;
+  const [, , yourCheese] = content;
   console.log('Here you are, it is your:', yourCheese);
 
   // #! Co zrobić jeśli mamy kolizję nazw z innym API?
@@ -190,7 +190,7 @@
 }());
 
 // Sample #8 | pomocnicy wrzucania i wyciągania argumentów oraz manipulacji tablicami
-(function spreadAndRestOperators(){
+(function spreadAndRestOperators() {
   console.log('#8 ---- spreadAndRestOperators() :');
 
   const fruits = ['apple', 'banana', 'pear'];
@@ -199,6 +199,12 @@
   // połącz owoce i warzywa:
   const combineWithSpread = [...fruits, ...vegetables];
   console.log(combineWithSpread);
+
+  // spread dla obiektu:
+  const user = { name: 'Michał' }
+  const user2 = { lastName: 'Nowak' }
+
+  console.log({ ...user, ...user2 })
 
   let no = 1;
   function consoleCounter(msg, ...rest) {
@@ -212,7 +218,7 @@
 }());
 
 // Sample #9 | Interpolacja tekstu i wartości "string-multiline"
-(function templateString(){
+(function templateString() {
   console.log('#9 ---- templateString() :');
 
   const interpolate = 'official suit';
@@ -225,11 +231,11 @@
 }());
 
 // Sample #10 | Generatory
-(function generators(){
+(function generators() {
   console.log('#10 ---- generators() :');
 
   function* giveMeNumber() {
-    for(let x = 0; x <= 10; x++) {
+    for (let x = 0; x <= 10; x++) {
       yield x;
     }
   }

@@ -29,7 +29,14 @@ const myFirstImpressiveObject = {
 function cloner(objectToClone) {
 	// #Reguła:
 	// Kodzik można pisać tylko w tym bloku.
-	return objectToClone;
+	const newObj = { ...objectToClone };
+	for (let key in newObj) {
+		if (newObj[key] !== null && typeof newObj[key] === 'object') {
+			newObj[key] = { ...newObj[key] }
+		}
+	}
+
+	return newObj;
 }
 
 
@@ -38,6 +45,21 @@ function cloner(objectToClone) {
 
 const clonedFirstObject = cloner(myFirstObject);
 const clonedFirstImpressiveObject = cloner(myFirstImpressiveObject);
+
+
+console.log(1 === 1);
+console.log(true === true);
+console.log(null === null);
+
+console.log(0n === 0n);
+
+
+console.log(Symbol() === Symbol());
+console.log(typeof Symbol());
+// console.log(new Symbol());
+
+console.log({} === {});
+console.log([] === []);
 
 assertThat(
 	'clonedFirstObject > both suppose to be an objects',
