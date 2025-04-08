@@ -1,4 +1,6 @@
 import { assertThat } from '../../j4b1-assert.js'
+import { stringHelper } from '../../A-the-modular-js/20-import-export-variants/a20-challenge-project/czesuaf-util.js';
+
 /**
  * b30-based-on-prototype
  * Challenge
@@ -20,7 +22,22 @@ import { assertThat } from '../../j4b1-assert.js'
  * - Nie można tylko ruszać kodziku z asercjami!
  */
 
+String.prototype.last = function () {
+	return this.at(-1) || '';
+}
 
+String.prototype.capitalize = function () {
+	return stringHelper.capitalize(this);
+}
+
+// Array.prototype.joinWithSpace = function () {
+// 	return this.join(' ')
+// };
+
+// ''.last(); //=
+
+
+// [1, 2, 3, 5].joinWithSpace(); //=
 
 // #Reguła:
 // Nie możesz zmieniać kodu poniżej:
