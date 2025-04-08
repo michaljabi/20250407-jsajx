@@ -29,9 +29,10 @@ const initialTypeState = {
 
 // Funkcja obliczająca stan następny na podstawie stanu poprzedniego
 function calculateNewParagraphState(currentState = initialTypeState, paragraphText = '') {
-	const copy = { ...currentState }
-	copy.paragraphTextContent += paragraphText;
-	return copy;
+	return {
+		...currentState,
+		paragraphTextContent: currentState.paragraphTextContent + paragraphText,
+	};
 }
 
 // Nasza symulacja pisania czegoś przez usera:
