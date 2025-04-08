@@ -11,17 +11,39 @@ import { assertThat } from '../../j4b1-assert.js'
  */
 
 const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-const kebabCaseToCamelCase = (sentence) => sentence.split('-').map((word, idx) => {
-	if (idx === 0) {
-		console.log(word);
-		return word.toLowerCase()
-	}
-	return capitalize(word)
-}).join('')
-
-const kebabCaseToPascalCase = (sentence) => sentence.split('-').map(capitalize).join('');
+const firstToLowerAndCapitalizeRest = (word, idx) => idx === 0 ? word.toLowerCase() : capitalize(word);
+const splitBy = (sentence, sign = '-') => sentence.split(sign);
+const kebabCaseToCamelCase = (sentence) => splitBy(sentence).map(firstToLowerAndCapitalizeRest).join('')
+const kebabCaseToPascalCase = (sentence) => splitBy(sentence).map(capitalize).join('');
 const kebabCaseToSnakeCase = (sentence) => sentence.replaceAll('-', '_').toLowerCase();
 
+// Pure function:
+// 1. Dla tych samych danych wejściowych daje te same wyjściowe
+// 2. Nie ma efektów uboczny (np. podczas jej wykonywania nie ma "strzału do serwera")
+// 3. Wykonuje tylko jedną operacje (możliwie atomizujemy)
+
+console.log(capitalize('michał'))
+
+const addExclamation = (word) => word + '!';
+
+const capitalizeAndAddExclamation = word => addExclamation(capitalize(word))
+console.log(['kasia', 'zosia'].map(capitalizeAndAddExclamation))
+// map to HOF (Higher Order Function) - zasadniczo funkcja która przyjmuje inną funkcję
+console.log(['kasia', 'zosia'].map(capitalize).map(addExclamation))
+
+// z tego;[1, 2, 3, 4]
+// zrób to ;[1, 4, 9, 16]
+const baseArray = [1, 2, 3, 4]
+// proste...
+let result = [];
+for (const x of baseArray) {
+	result.push(x * x);
+}
+console.log(result);
+console.log(baseArray);
+
+console.log(baseArray.map(n => n * n))
+console.log(baseArray)
 
 // #Reguła:
 // Nie możesz zmieniać kodu poniżej:
