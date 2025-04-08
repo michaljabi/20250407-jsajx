@@ -15,9 +15,44 @@ import { assertThat } from '../../j4b1-assert.js'
  * - W odpowiednim momencie implementacji odkomentuj linię z wywołaniem metody `.makeARise(5000)`
  */
 
+class Lawyer {
+
+	#salary = 3000;
+
+	constructor(fullName = '', salary = 3000) {
+		const [firstName, lastName] = fullName.split(' ')
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.#salary = salary;
+	}
+
+	getSalaryInfo() {
+		return `${this.firstName} earns $${this.#salary}`
+	}
+
+	makeARise(riseValue) {
+		this.#salary += riseValue;
+	}
+}
+
 function lawyerFactory(fullName = '', salary = 3000) {
 	// #Reguła:
 	// Kodz1ik można pisać tylko w tym bloku.
+	const [firstName, lastName] = fullName.split(' ')
+	// let privSalary = salary; nie muszą tego nawet, wystarczy posłużyć się salary.
+	return {
+		firstName,
+		lastName,
+		getSalaryInfo() {
+			return `${firstName} earns $${salary}`
+		},
+		makeARise(riseValue) {
+			salary += riseValue;
+		}
+	}
+
+	// z wykorzystaniem klasy:
+	// return new Lawyer(fullName, salary)
 }
 
 // #Reguła:
@@ -28,7 +63,7 @@ const lawyerRachel = lawyerFactory('Rachel Zane', 5000);
 const lawyerDonna = lawyerFactory('Donna');
 
 // odkomentuj poniższą linię, kiedy będzie już implementacja:
-// lawyerDonna.makeARise(5000)
+lawyerDonna.makeARise(5000)
 
 assertThat(
 	'Lawyer should have first and last name (just a warm up)',

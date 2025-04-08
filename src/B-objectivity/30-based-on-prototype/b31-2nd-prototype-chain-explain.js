@@ -12,6 +12,8 @@
 
 // Klasa bazowa
 class Vehicle {
+	#hello = '123';
+
 	constructor(name = '') {
 		this.name = name;
 	}
