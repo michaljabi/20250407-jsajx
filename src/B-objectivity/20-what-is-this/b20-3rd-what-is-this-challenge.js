@@ -22,11 +22,27 @@ class ShowDepartmentButton {
 		return this.name;
 	}
 
+	// printMyName = () => {
+	// 	return this.name;
+	// }
+
+	printMyNameInTime() {
+		const that = this;
+		setTimeout(function () {
+			console.log(that.name);
+		}, 2000)
+		setTimeout(() => {
+			console.log(this.name);
+		}, 2000)
+	}
+
 	render() {
 		return {
 			type: 'button',
 			name: 'Gotcha !',
-            onClick: this.printMyName,
+			// onClick: this.printMyName.bind(this),
+			onClick: () => this.printMyName(),
+			// onClick: this.printMyName,
 			innerHTML: 'Show your department'
 		}
 	}
@@ -37,6 +53,9 @@ class ShowDepartmentButton {
 // Nie możesz zmieniać kodu poniżej:
 const myComponent = new ShowDepartmentButton();
 const renderedComponent = myComponent.render();
+
+
+myComponent.printMyNameInTime();
 
 assertThat(
 	'renderedComponent should be a button',

@@ -47,9 +47,14 @@ globalThis.name = 'nodejs'
 const personMaurice = {
 	name: 'Maurice',
 	getName() {
-		return this.name;
+		return this;
 	}
+	// getName: () => {
+	// 	return this;
+	// }
 }
+
+console.log(this)
 
 personMaurice.getName(); //=
 
