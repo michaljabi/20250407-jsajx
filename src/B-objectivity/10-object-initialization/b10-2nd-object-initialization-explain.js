@@ -50,8 +50,10 @@ console.log(new Person());
 // Tutaj jeśli zapomnimy słowa kluczowego `new` przy tworzeniu instancji obiektów - zostaniemy o tym poinformowani.
 // Dodatkowo - widzimy dokładnie gdzie jest konstruktor, i w prosty sposób możemy dopisywać metody
 class MyPerson {
+
+	name = 'Michał'
+
 	constructor() {
-		this.name = 'Michał';
 		this.lastName = 'Kowalsky';
 	}
 
