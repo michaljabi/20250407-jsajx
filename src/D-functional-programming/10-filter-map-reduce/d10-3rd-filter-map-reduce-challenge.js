@@ -1,4 +1,5 @@
 import { assertThat } from '../../j4b1-assert.js'
+import { capitalize } from './d10-1st-filter-map-reduce-warm-up.js'
 /**
  * d10-filter-map-reduce
  * Challenge
@@ -27,9 +28,15 @@ const backendApiRequest = () => [
 const emailData = backendApiRequest();
 
 // Tutaj możesz pisać:
-const showNamesOnly = emailData;
-const showWomanNamesOnly = emailData;
-const showEmailsWithDomainSiteCom = emailData;
+const showNamesOnly = emailData.map(email => {
+	const [name] = email.split('@')
+	return name;
+}).map(capitalize);
+const showWomanNamesOnly = showNamesOnly.filter(name => name.at(-1)?.toLowerCase() === 'a');
+const showEmailsWithDomainSiteCom = emailData.filter(email => {
+	const [, domain] = email.split('@')
+	return domain === 'site.com';
+})
 
 
 // #Reguła:
@@ -41,10 +48,10 @@ assertThat(
 
 assertThat(
 	'Second component should consume data as Woman names only',
-	expect => expect(showWomanNamesOnly).toEqual(['Jadwiga','Henryka','Anna'])
+	expect => expect(showWomanNamesOnly).toEqual(['Jadwiga', 'Henryka', 'Anna'])
 )  //=
 
 assertThat(
 	'Third component should have @site.com emails as data provided',
-	expect => expect(showEmailsWithDomainSiteCom).toEqual(['adrian@site.com','stefan@site.com','anna@site.com'])
+	expect => expect(showEmailsWithDomainSiteCom).toEqual(['adrian@site.com', 'stefan@site.com', 'anna@site.com'])
 )  //=
