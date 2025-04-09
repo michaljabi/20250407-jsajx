@@ -13,19 +13,32 @@ import { assertThat, fireCount } from '../../j4b1-assert.js'
  * - możesz dopisywać nowy kod
  */
 
+setTimeout(() => {
+	console.log('?')
+
+}, 5000)
+
+// PROVIDER
 function getTheRefund(refundFn) {
 	const totalRefund = 300;
 	fireCount(getTheRefund)
 	refundFn(totalRefund);
 }
 
-// Person 1
+// Person 1 (consumer)
 let collectedRefund = 0;
+getTheRefund((value) => {
+	collectedRefund += value;
+})
 
-
-// Person 2
+// Person 2 (consumer)
 let collectedTwoRefunds = 0;
-
+getTheRefund((value) => {
+	collectedTwoRefunds += value;
+})
+getTheRefund((value) => {
+	collectedTwoRefunds += value;
+})
 
 // #Reguła:
 // Nie możesz zmieniać kodu poniżej:
