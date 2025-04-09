@@ -15,11 +15,14 @@ const collector = [];
 
 collector.push(1);
 
-
+Promise.resolve().then(() => {
 collector.push(3);
+});
 
 
 collector.push(2);
+
+// console.log(collector)
 
 queueMicrotask(() => {
 		assertThat(
@@ -34,8 +37,9 @@ const secondCollector = [];
 
 secondCollector.push(1);
 
-
+setTimeout(() => {
 secondCollector.push(3);
+})
 
 
 secondCollector.push(2);
