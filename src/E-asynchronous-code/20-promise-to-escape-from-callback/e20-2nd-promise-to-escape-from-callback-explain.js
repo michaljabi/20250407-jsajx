@@ -48,26 +48,36 @@ function makeAjaxCall(url, callbackFn) {
 	// callbackFn(null, new Error('reject'));
 }
 
-// Przykład callback hell:
-makeAjaxCall('https://first', (data, err) => {
-	if(err) {
-		console.log('error 😐', err)
-		return;
-	}
-	makeAjaxCall('https://second' + data.url, (data, err) => {
-		if(err) {
+/// wnioski: try/catch działa TYLKO dla kodu synchronicznego!
+try {
+	// Przykład callback hell:
+	makeAjaxCall('https://first', (data, err) => {
+		if (err) {
 			console.log('error 😐', err)
+			throw err;
 			return;
 		}
-		makeAjaxCall('https://third' + data.url, (data, err) => {
-			if(err) {
+		makeAjaxCall('https://second' + data.url, (data, err2) => {
+			if (err2) {
+				throw err2;
 				console.log('error 😐', err)
 				return;
 			}
-			console.log('THIS IS MADNESS !!!')
+			makeAjaxCall('https://third' + data.url, (data, err3) => {
+				if (err3) {
+					throw err3;
+					console.log('error 😐', err)
+
+					return;
+				}
+				console.log('THIS IS MADNESS !!!')
+			})
 		})
 	})
-})
+
+} catch (e) {
+	console.log(e)
+}
 
 // Promise - TO THE RESCUE!
 // Czy można rozwiązać to prościej - tak.
@@ -82,9 +92,13 @@ const provider = Promise.resolve('hello');
 
 // Odbiór promise:
 // CONSUMER:
-provider.then((message) => {
-	console.log(message)
-})
+provider
+	.then((message) => {
+		console.log(message)
+	})
+	.catch((e) => {
+		console.log(e)
+	})
 
 // całe piękno polega na tej własności:
 provider
@@ -117,13 +131,14 @@ makeAjaxCallAsPromise('https://first')
 		return makeAjaxCallAsPromise('https://second' + data.url);
 	})
 	.then((data) => {
+		throw new Error('error JEST TUTAJ');
 		return makeAjaxCallAsPromise('https://third' + data.url);
 	})
 	.then((data) => {
 		console.log('THIS IS COOLNESS !!!', data);
 	})
 	.catch((err) => {
-		console.log('error 😐', err)
+		console.log('error 😐', err.message)
 	})
 
 // Z promise - mamy 2 opcje:
@@ -137,16 +152,23 @@ makeAjaxCallAsPromise('https://first')
 // Pełne API do utworzenia Promise, wygląda następująco:
 
 const promiseProvider = new Promise((resolve, reject) => {
-	// zrób coś synchronicznie, lub asynchronicznie
-	// ponieważ mamy dostęp do resolve i reject jako callbacks:
 	setTimeout(() => {
-		resolve('OK')
-		// lub:
-		// reject(new Error('No way !'))
-	}, 200)
+		//reject(new Error('Oh no....!'))
+		// resolve('hello from promise')
+	}, 2000)
 })
 
+console.log(promiseProvider);
 
+promiseProvider.then(value => {
+	console.log(value);
+}).catch(err => {
+	console.log(err.message);
+}).finally(() => {
+	console.log('!')
+})
+
+console.log('??!')
 // Zwróć uwagę, że powyższy zapis może być resolved - natychmiastowo (synchronicznie), lub asynchronicznie
 // Dla uproszczenia - Promise posiada 2 metody statyczne, jeśli chcemy mieć Promise, która natychmiastowo jest resolved lub rejected.
 // Zobacz jak to działa w praktyce.
@@ -160,11 +182,11 @@ Promise.resolve('Hello')
 
 // Podobnie z REJECT:
 // Zamiast pisać:
-new Promise(((resolve, reject) => {
-	reject('Oh no !')
-}))
+// new Promise(((resolve, reject) => {
+// 	reject('Oh no !')
+// }))
 // można w skrócie napisać:
-Promise.reject('Oh no !')
+// Promise.reject('Oh no !')
 
 // TO w połączeniu z tym że możemy chain'ować `.then()` i w kolejnych wywołaniach `.then()`
 // podawać dane albo w postaci kolejnych Promise - albo dowolnych innych obiektów, które i tak zostaną opakowane,
