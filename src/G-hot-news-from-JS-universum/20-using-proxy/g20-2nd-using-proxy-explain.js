@@ -23,10 +23,14 @@ console.log(person);
 // Przykładowo, za każdym razem gdy poprosisz o pole w obiekcie - ja zwrócę wartość "TROLL" 😁.
 
 const myTroll = new Proxy(person, {
-	get ( target, propertyKey ) {
-		// console.log(propertyKey)
-		// console.log(target[propertyKey])
-		return 'TROLL'
+	get(target, propertyKey) {
+		console.log(propertyKey)
+		console.log(target[propertyKey])
+
+		return target[propertyKey]
+	},
+	set(target, propertyKey) {
+		target._chaged = true;
 	}
 })
 
@@ -34,8 +38,13 @@ console.log(myTroll.name)
 console.log(myTroll.lastName)
 console.log(myTroll.any)
 console.log(myTroll.nonExsitent)
-console.log(JSON.stringify(myTroll));
+//console.log(JSON.stringify(myTroll));
 
+console.log(myTroll);
+
+
+myTroll.name = "?";
+console.log(myTroll);
 // Dzieje się tak ponieważ person zostaje opakowany w obiekt Proxy,
 // Obiekt ten posiada 2 parametry:
 // - target -> tutaj przekazujemy obiekt który chcemy opakować
@@ -66,7 +75,7 @@ const someOtherSample = {
 }
 
 const sideEffects = new Proxy(someOtherSample, {
-	get ( target, propertyKey ) {
+	get(target, propertyKey) {
 		console.log(propertyKey)
 		// zauważ że pułapka działa, jednak my nie zwracamy żadnej wartości
 		// dlatego pola mają dają nam "undefined"
@@ -83,10 +92,10 @@ console.log(sideEffects.hello)
 
 const myProject = new Proxy({}, {
 	deleteProperty(target, propertyKey) {
-		if (propertyKey in target){
+		if (propertyKey in target) {
 			// faktycznie usuwamy:
 			delete target[propertyKey]
-			console.log('usuwam:',propertyKey)
+			console.log('usuwam:', propertyKey)
 			return true
 		}
 		console.log('nie znalazłem:', propertyKey)
