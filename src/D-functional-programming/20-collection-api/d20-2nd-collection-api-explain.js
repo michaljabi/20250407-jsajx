@@ -54,17 +54,20 @@ console.log(Object.keys(mySet));
 
 const myRealMap = new Map();
 
-myRealMap.set( 'hello', 'World' );
-myRealMap.set( 'hello', 'World 2' );
-myRealMap.set( 'myName', 'Maurice Moss' );
-myRealMap.set( 'myOtherName', 'Roy' );
+myRealMap.set('hello', 'World');
+myRealMap.set('hello', 'World 2');
+myRealMap.set('myName', 'Maurice Moss');
+myRealMap.set('myOtherName', 'Roy');
 
-console.log( myRealMap );
-console.log( myRealMap.get( 'non-existing' ) );
-console.log( myRealMap.get( 'hello' ) );
+console.log(myRealMap);
+console.log(myRealMap.get('non-existing'));
+console.log(myRealMap.get('hello'));
+
+console.log(myRealMap.has('hello'))
 
 // Usuwanie elementu:
 myRealMap.delete('hello') //=
+myRealMap.has('hello') //=
 console.log(myRealMap)
 
 // Tworzenie nowej Mapy z istniejącej tablicy (dwuwymiarowej)
@@ -80,13 +83,13 @@ console.log(Array.from(myRealMap.keys()))
 console.log(Array.from(myRealMap.values()))
 
 // Iterowanie:
-for(const key of myRealMap.keys()) {
+for (const key of myRealMap.keys()) {
 	console.log(key)
 }
-for(const value of myRealMap.values()) {
+for (const value of myRealMap.values()) {
 	console.log(value)
 }
-for(const entry of myRealMap) {
+for (const entry of myRealMap) {
 	console.log(entry)
 }
 
@@ -106,19 +109,19 @@ myRealMap.size //=
 
 const myRealSet = new Set();
 
-myRealSet.add( 'apple' );
-myRealSet.add( 'cherry' );
-myRealSet.add( 'banana' );
-myRealSet.add( 'banana' );
-myRealSet.add( 'banana' );
-myRealSet.add( 'cherry' );
-myRealSet.add( 'mango' );
+myRealSet.add('apple');
+myRealSet.add('cherry');
+myRealSet.add('banana');
+myRealSet.add('banana');
+myRealSet.add('banana');
+myRealSet.add('cherry');
+myRealSet.add('mango');
 
-console.log( myRealSet );
+console.log(myRealSet);
 
 myRealSet.delete('mango') //=
 
-console.log( myRealSet );
+console.log(myRealSet);
 
 // Tworzenie nowego Set'a z istniejącej tablicy
 console.log(
@@ -129,7 +132,7 @@ console.log(
 console.log(Array.from(myRealSet))
 
 // Iterowanie:
-for(const fruit of myRealSet) {
+for (const fruit of myRealSet) {
 	console.log(fruit)
 }
 
@@ -142,3 +145,13 @@ myRealSet.add('strawberry') //=
 
 // Ilość elementów w secie:
 myRealSet.size //=
+
+
+console.log(new Set([{}, {}, {}, {}]))
+
+const ref = {};
+const ref2 = ref;
+const ref3 = ref2;
+const ref4 = ref3;
+
+console.log(new Set([ref, ref2, ref3, ref4]))

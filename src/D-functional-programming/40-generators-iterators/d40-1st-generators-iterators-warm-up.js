@@ -8,8 +8,9 @@ import { assertThat } from '../../j4b1-assert.js'
  */
 
 const splitter = [];
-for(const x of 'Latte') {
+for (const x of 'Latte') {
 	// Możesz pisać kod tutaj (wewnątrz tego bloku):
+	splitter.push(x);
 }
 // #Reguła:
 // Nie możesz zmieniać tego kodu:
@@ -21,11 +22,13 @@ assertThat(
 // Nie możesz zmieniać wartości w `numeric`
 const numeric = [[1, 2], [3, 4]];
 // Możesz ruszać przypisania w num1 i num2
-let num1;
-let num2;
+let num1 = '';
+let num2 = '';
 // pętla musi zostać i iterować po `numeric`, jednak możesz modyfikować jej zawartość
-for(const placeholder of numeric) {
+for (const [val1, val2] of numeric) {
 	// Możesz pisać kod tutaj (wewnątrz tego bloku):
+	num1 += val1
+	num2 += val2
 }
 // #Reguła:
 // Nie możesz zmieniać tego kodu:
@@ -40,7 +43,7 @@ assertThat(
 // ------------------------------
 
 // Możesz edytować ten wpis
-const DYNAMIC_KEY = 'show';
+const DYNAMIC_KEY = 'showMeSomeNumbers';
 
 // Nie możesz dodawać nowych metod to tej klasy!
 // Możesz edytować nazwy metod
@@ -48,10 +51,12 @@ class MyIterableConcept {
 
 	['thisIsSimple']() {
 		// Tutaj można pisać kodzik
+		return 'FUN'
 	}
 
 	[DYNAMIC_KEY]() {
-		 // Tutaj można pisać kodzik
+		// Tutaj można pisać kodzik
+		return [90,10,20]
 	}
 }
 
