@@ -11,7 +11,24 @@ import { assertThat } from '../../j4b1-assert.js'
  */
 
 const numbers = [10, 20, 30, 2, 2, 2, 30, 20, 2, 10, 8, 9, 0];
-const distinctNumbers = numbers
+// const distinctNumbers = [...new Set(numbers)]
+const distinctNumbers = Array.from(new Set(numbers))
+
+const arrayLike = {
+	0: 'hello',
+	1: 'goodbye',
+	2: 'thanks',
+	length: 3
+}
+
+console.log(arrayLike);
+console.log(arrayLike[0]);
+console.log(arrayLike[1]);
+console.log(arrayLike[2]);
+
+console.log(Array.from(arrayLike))
+
+
 
 // #Reguła:
 // Nie możesz zmieniać kodu poniżej:
