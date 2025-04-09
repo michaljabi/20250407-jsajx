@@ -27,17 +27,32 @@ const backendApiRequest = () => [
 ];
 const emailData = backendApiRequest();
 
-// Tutaj możesz pisać:
-const showNamesOnly = emailData.map(email => {
-	const [name] = email.split('@')
-	return name;
-}).map(capitalize);
-const showWomanNamesOnly = showNamesOnly.filter(name => name.at(-1)?.toLowerCase() === 'a');
-const showEmailsWithDomainSiteCom = emailData.filter(email => {
-	const [, domain] = email.split('@')
-	return domain === 'site.com';
-})
+const isAWomanName = name => name.at(-1)?.toLowerCase() === 'a';
+const splitEmail = email => email.split('@');
+const splitWith = char => word => word.split(char);
 
+const endsWithSiteCom = word => word.endsWith('site.com')
+const endsWith = (domain) => (word) => word.endsWith(domain);
+
+// inny widok tego samego:
+function endsWith2(domain) {
+	return function (word) {
+		return word.endsWith(domain)
+	}
+}
+
+// function twoParams(domain, word) {
+// 	console.log(word)
+// 	return word.endsWith(domain)
+// }
+
+// Tutaj możesz pisać:
+const showNamesOnly = emailData.map(splitWith('@')).map(([name]) => name).map(capitalize);
+const showWomanNamesOnly = showNamesOnly.filter(isAWomanName);
+const showEmailsWithDomainSiteCom = emailData.filter(endsWith('site.com'))
+const showEmailsWithDomainPl = emailData.filter(endsWith('domain.pl'))
+
+console.log(showEmailsWithDomainPl)
 
 // #Reguła:
 // Nie możesz zmieniać kodu poniżej:
